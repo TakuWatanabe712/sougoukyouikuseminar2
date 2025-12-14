@@ -33,17 +33,17 @@ void Motor::stop() {
 }
 
 void Motor::forward() {
-  setMotorSpeed(Motor_L1_F_PIN, Motor_L1_B_PIN, speed_);
-  setMotorSpeed(Motor_L2_F_PIN, Motor_L2_B_PIN, speed_);
-  setMotorSpeed(Motor_R1_F_PIN, Motor_R1_B_PIN, speed_);
-  setMotorSpeed(Motor_R2_F_PIN, Motor_R2_B_PIN, speed_);
-}
-
-void Motor::back() {
   setMotorSpeed(Motor_L1_F_PIN, Motor_L1_B_PIN, -speed_);
   setMotorSpeed(Motor_L2_F_PIN, Motor_L2_B_PIN, -speed_);
   setMotorSpeed(Motor_R1_F_PIN, Motor_R1_B_PIN, -speed_);
   setMotorSpeed(Motor_R2_F_PIN, Motor_R2_B_PIN, -speed_);
+}
+
+void Motor::back() {
+  setMotorSpeed(Motor_L1_F_PIN, Motor_L1_B_PIN, speed_);
+  setMotorSpeed(Motor_L2_F_PIN, Motor_L2_B_PIN, speed_);
+  setMotorSpeed(Motor_R1_F_PIN, Motor_R1_B_PIN, speed_);
+  setMotorSpeed(Motor_R2_F_PIN, Motor_R2_B_PIN, speed_);
 }
 
 void Motor::left() {
@@ -77,8 +77,8 @@ void Motor::turnRight() {
 void Motor::setSpeed(int speed) { speed_ = constrain(speed, 0, 255); }
 
 void Motor::drive(int leftSpeed, int rightSpeed) {
-  setMotorSpeed(Motor_L1_F_PIN, Motor_L1_B_PIN, leftSpeed);
-  setMotorSpeed(Motor_L2_F_PIN, Motor_L2_B_PIN, leftSpeed);
-  setMotorSpeed(Motor_R1_F_PIN, Motor_R1_B_PIN, rightSpeed);
-  setMotorSpeed(Motor_R2_F_PIN, Motor_R2_B_PIN, rightSpeed);
+  setMotorSpeed(Motor_L1_F_PIN, Motor_L1_B_PIN, -leftSpeed);
+  setMotorSpeed(Motor_L2_F_PIN, Motor_L2_B_PIN, -leftSpeed);
+  setMotorSpeed(Motor_R1_F_PIN, Motor_R1_B_PIN, -rightSpeed);
+  setMotorSpeed(Motor_R2_F_PIN, Motor_R2_B_PIN, -rightSpeed);
 }
