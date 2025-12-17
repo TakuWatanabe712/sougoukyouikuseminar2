@@ -268,8 +268,7 @@ void lineTraceControl() {
   float derivative =
       dt > 0 ? static_cast<float>(error - linePreviousError) / dt : 0.0f;
   lineIntegral += static_cast<float>(error) * dt;
-  lineIntegral =
-      constrain(lineIntegral, -lineIntegralLimit, lineIntegralLimit);
+  lineIntegral = constrain(lineIntegral, -lineIntegralLimit, lineIntegralLimit);
 
   float correction =
       (lineKp * error) + (lineKi * lineIntegral) + (lineKd * derivative);
@@ -305,9 +304,9 @@ void printLineSensorValues() {
   }
   Serial.print(" | Active:");
   for (int i = 0; i < 8; i++) {
-    bool active =
-        LINE_SENSOR_ENABLED[i] &&
-        (LINE_SENSOR_ACTIVE_LOW ? (rawValues[i] == LOW) : (rawValues[i] == HIGH));
+    bool active = LINE_SENSOR_ENABLED[i] &&
+                  (LINE_SENSOR_ACTIVE_LOW ? (rawValues[i] == LOW)
+                                          : (rawValues[i] == HIGH));
     Serial.print(' ');
     Serial.print(active ? 1 : 0);
   }
@@ -368,9 +367,7 @@ void handleUpdateRequest() {
   server.send(303);
 }
 
-void handleNotFound() {
-  server.send(404, "text/plain", "Not found");
-}
+void handleNotFound() { server.send(404, "text/plain", "Not found"); }
 
 String buildControlPage() {
   String page = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Line "
@@ -392,9 +389,10 @@ String buildControlPage() {
           String(lineKi, 2) + "'></label>";
   page += "<label>Kd<input type='number' step='0.1' name='kd' value='" +
           String(lineKd, 2) + "'></label>";
-  page += "<label>Integral Limit<input type='number' step='1' name='integralLimit' "
-          "value='" +
-          String(lineIntegralLimit, 2) + "'></label>";
+  page +=
+      "<label>Integral Limit<input type='number' step='1' name='integralLimit' "
+      "value='" +
+      String(lineIntegralLimit, 2) + "'></label>";
   page += "<button type='submit'>更新</button></form>";
   page += "<p>現在のPID出力は実行中のライン制御に即座に反映されます。</p>";
   page += "</body></html>";

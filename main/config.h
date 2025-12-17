@@ -65,9 +65,9 @@ enum RobotState {
  * ========================= */
 constexpr int LINE_SENSOR_WEIGHTS[8] = {-3, -2, -1, 0, 0, 1, 2, 3};
 constexpr bool LINE_SENSOR_ACTIVE_LOW = false;
-constexpr int LINE_BASE_SPEED = 150;
+constexpr int LINE_BASE_SPEED = 255;
 constexpr int LINE_MAX_SPEED = 255;
-constexpr float LINE_KP = 80.0f;
+constexpr float LINE_KP = 1000.0f;
 constexpr float LINE_KI = 0.0f;
 constexpr float LINE_KD = 0.0f;
 constexpr float LINE_INTEGRAL_LIMIT = 200.0f;
