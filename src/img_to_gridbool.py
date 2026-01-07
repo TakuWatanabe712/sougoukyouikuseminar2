@@ -9,10 +9,6 @@ def img_to_grid(image) -> list[list[bool]]:
 
     prosessed_image = cv2.adaptiveThreshold(gray_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 101, 110)
 
-    cv2.imshow('image', prosessed_image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
     result = [[0] * w for _ in range(h)]
 
     for i in range(h):
